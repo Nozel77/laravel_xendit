@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class PaymentController extends Controller
 {
     public function __construct() {
-        Configuration::setXenditKey('xnd_development_I2eMdJI9KVjf82j9RjsunTt5QcjVuAKZvom3H7NZRY8NUpbUhRhD91JuGvejwrJ');
+        Configuration::setXenditKey(env('XENDIT_API_KEY'));
         $this->apiInstance = new InvoiceApi();
     }
 
