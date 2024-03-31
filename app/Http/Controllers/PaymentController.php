@@ -34,4 +34,19 @@ class PaymentController extends Controller
           return response()->json($payment);
           
     }
+
+    public function notification(Request $request){
+        $result = $this->apiInstance->getInvoices(null,$request->external_id);
+
+        $payment = Payment::where('external_id', $request->external_id)->firstOrFail();
+
+        if ($payment->status == 'SETTLED') {
+            return response()->json('payment anda telah diproses');
+        }
+
+        $payment->status = strtolower($result[0]['status']);
+        $payment->save();
+
+        return response()->json(['message' => 'success']);
+    }
 }

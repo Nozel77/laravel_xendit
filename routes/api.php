@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('payments', [PaymentController::class, 'store']);
+Route::post('payments/notification', [PaymentController::class, 'notification']);
